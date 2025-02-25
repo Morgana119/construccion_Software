@@ -1,0 +1,22 @@
+{
+  "name": "construccion_software",
+  "version": "1.0.0",
+  "description": "Laboratorios TC2005B feb-jun 2025",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Morgana119/Construcci-n_Software.git"
+  },
+  "keywords": [
+    "TC2005B"
+  ],
+  "author": "Andrea Fatima Figueroa Lopez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Morgana119/Construcci-n_Software/issues"
+  },
+  "homepage": "https://github.com/Morgana119/Construcci-n_Software#readme"
+}

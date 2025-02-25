@@ -25,58 +25,13 @@ const html_header = `
                 <span aria-hidden="true"></span>
             </a>
             </div>
-        
-            <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item">
-                Home
-                </a>
-        
-                <a class="navbar-item">
-                Documentation
-                </a>
-        
-                <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    More
-                </a>
-        
-                <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                    About
-                    </a>
-                    <a class="navbar-item is-selected">
-                    Jobs
-                    </a>
-                    <a class="navbar-item">
-                    Contact
-                    </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item">
-                    Report an issue
-                    </a>
-                </div>
-                </div>
-            </div>
-        
-            <div class="navbar-end">
-                <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-primary">
-                    <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light">
-                    Log in
-                    </a>
-                </div>
-                </div>
-            </div>
+
             </div>
         </nav>
         <section class="section">
             <div class="container">
                 <h1 class="title">
-                    Invernadero
+                    Agregar planta
                 </h1>
                 `;
 const html_form = `<form action="/agregar" method="POST">
@@ -112,9 +67,38 @@ const html_footer = ` <footer class="footer">
 </html>
 `;
 const html_plantas =`
-
+<article class="message is-info">
+  <div class="message-header">
+    <p>Info</p>
+    <button class="delete" aria-label="delete"></button>
+  </div>
+  <div class="message-body">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec
+    nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus
+    diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac
+    <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et
+    sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a
+    neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+  </div>
+</article>
 `;
 const html_comestibles = `
+<article class="message is-success">
+  <div class="message-header">
+    <p>Success</p>
+    <button class="delete" aria-label="delete"></button>
+  </div>
+  <div class="message-body">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec
+    nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus
+    diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac
+    <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et
+    sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a
+    neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+  </div>
+</article>
 
 `;
 
@@ -133,13 +117,13 @@ const server = http.createServer( (request, response) => {
             response.write(html_header + html_form + html_footer);
         } 
         if (request.url == "/plantas"){
-            response.write(html_header + html_form + html_footer);
+            response.write(html_header + html_plantas + html_footer);
         } 
         if (request.url == "/comestibles"){
-            response.write(html_header + html_form + html_footer);
+            response.write(html_header + html_comestibles + html_footer);
         } 
         response.end();
-        
+
     } else if (request.method == "POST"){
         if (request.url == "/agregar"){
             const datos_completos = [];
@@ -155,37 +139,30 @@ const server = http.createServer( (request, response) => {
 
                 const nueva_planta = string_datos_completos.split('=')[1];
                 plantas.push(nueva_planta);
-                file_system.appendFileSync('plantas.txt',nueva_planta);
-    
+                file_system.appendFileSync('plantas.txt',nueva_planta + "\n");
+
                 response.setHeader('Content-Type', 'text/html');
                 response.write(html_header);
                 response.write(`<div class="columns">`);
-    
+
                 for(const planta of plantas) {
                     response.write(`<div class="column">`);
                     response.write(`<div class="card">
-                        <div class="card-content">
-                        <div class="content">`);
+                        <div class="caxrd-content">
+                        <div class="content">
+                            `);
                     response.write(planta);
                     response.write(`</div>
-                        </div>
-                        </div>`);
-                    response.write(`</div>`);
+                            </div>
+                            </div>`);
                 }
-                response.write(`</div>`);
+                response.write(`<div class="buttons">
+                <a href="/plantas" class="button is-primary" id=plantas>Primary</a>
+                </div>`);
                 response.write(html_footer);
                 response.end();
             });
-
         }
-        if (request.url == "/plantas"){
-
-        }
-
-
-        
-
-
     } else {
         response.statusCode = 404;
         response.setHeader('Content-Type', 'text/html');
