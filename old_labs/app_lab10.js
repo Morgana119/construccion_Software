@@ -69,8 +69,7 @@ const html_footer = ` <footer class="footer">
 const html_plantas =`
 <article class="message is-info">
   <div class="message-header">
-    <p>Info</p>
-    <button class="delete" aria-label="delete"></button>
+    <p>Plantas</p>
   </div>
   <div class="message-body">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -86,8 +85,7 @@ const html_plantas =`
 const html_comestibles = `
 <article class="message is-success">
   <div class="message-header">
-    <p>Success</p>
-    <button class="delete" aria-label="delete"></button>
+    <p>Comestibles</p>
   </div>
   <div class="message-body">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -107,21 +105,34 @@ const file_system = require("fs");
 
 const http = require('http');
 
-const server = http.createServer( (request, response) => {   
-
+const server = http.createServer( (request, response) => {
     if(request.method == "GET"){
         console.log(request.url);
         response.setHeader('Content-Type', 'text/html');
 
         if (request.url == "/agregar" || request.url == "/"){
             response.write(html_header + html_form + html_footer);
-        } 
-        if (request.url == "/plantas"){
-            response.write(html_header + html_plantas + html_footer);
-        } 
-        if (request.url == "/comestibles"){
-            response.write(html_header + html_comestibles + html_footer);
-        } 
+        } else if (request.url == "/plantas"){
+            console.log("Im in plantas");
+            response.write(html_header + html_plantas);
+            response.write(`<div class="buttons">
+                <a href="/comestibles" class="button is-primary">Comestibles</a>
+                </div>`);
+            response.write(html_footer);
+        } else if (request.url == "/comestibles"){
+            console.log("Im in comestibles");
+            response.write(html_header + html_comestibles);
+            response.write(`<div class="buttons">
+                <a href="/agregar" class="button is-primary">Inicio</a>
+                </div>`);
+            response.write(html_footer);
+        } else {
+            response.statusCode = 404;
+            response.setHeader('Content-Type', 'text/html');
+            response.write(html_header);
+            response.write('<div class="notification is-danger">La página no existe</div>');
+            response.write(html_footer);
+        }
         response.end();
 
     } else if (request.method == "POST"){
@@ -148,29 +159,23 @@ const server = http.createServer( (request, response) => {
                 for(const planta of plantas) {
                     response.write(`<div class="column">`);
                     response.write(`<div class="card">
-                        <div class="caxrd-content">
-                        <div class="content">
-                            `);
+                        <div class="card-content">
+                        <div class="content">`);
                     response.write(planta);
                     response.write(`</div>
-                            </div>
-                            </div>`);
+                        </div>
+                        </div>`);
+                    response.write(`</div>`);
                 }
+                response.write(`</div>`);
                 response.write(`<div class="buttons">
-                <a href="/plantas" class="button is-primary" id=plantas>Primary</a>
+                <a href="/plantas" class="button is-primary">Plantas</a>
                 </div>`);
                 response.write(html_footer);
                 response.end();
             });
         }
-    } else {
-        response.statusCode = 404;
-        response.setHeader('Content-Type', 'text/html');
-        response.write(html_header);
-        response.write('<div class= "notification is-danger">La página no existe</div>');
-        response.write(html_footer);
-        response.end();
-    }
+    } 
 });
 
 console.log("Serve started in port http://localhost:3000/");
