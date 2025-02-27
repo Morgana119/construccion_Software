@@ -1,0 +1,5 @@
+Pair programming with Santiago Alducin
+
+https://github.com/SALV19/ConstruccionDeSoftware/commit/302adbda846401594a4eecf6507b58284a3065dd
+
+https://github.com/SALV19/ConstruccionDeSoftware/commit/ef64752be9fe772d39dc1532abdd644c237b4202
