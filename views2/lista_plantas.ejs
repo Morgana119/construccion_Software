@@ -1,0 +1,17 @@
+<%- include('includes/_header') %>
+
+<div class="columns">
+<% for(let planta of plantas) { %>
+    <div class="column">
+        <div class="card">
+            <div class="card-content">
+                <div class="content">
+                    <%= planta %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
+</div>
+
+<%- include('includes/_footer') %>

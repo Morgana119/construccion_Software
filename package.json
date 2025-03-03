@@ -2,8 +2,9 @@
   "name": "construccion_software",
   "version": "1.0.0",
   "description": "Laboratorios TC2005B feb-jun 2025",
-  "main": "app.js",
+  "main": "./lab11/app.js",
   "scripts": {
+    "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/Morgana119/Construcci-n_Software/issues"
   },
-  "homepage": "https://github.com/Morgana119/Construcci-n_Software#readme"
+  "homepage": "https://github.com/Morgana119/Construcci-n_Software#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
 }

@@ -612,17 +612,17 @@ const html4 = `<!DOCTYPE html>
   </body>
 </html>
 `;
-router.get("/", (req, res) => {
-  res.send(html1);
+router.get("/", (request, responses) => {
+  responses.send(html1);
 });
-router.get("/page2", (req, res) => {
-  res.send(html2);
+router.get("/page2", (request, responses) => {
+  responses.send(html2);
 });
-router.get("/page3", (req, res) => {
-  res.send(html3);
+router.get("/page3", (request, responses) => {
+  responses.send(html3);
 });
-router.get("/page4", (req, res) => {
-  res.send(html4);
+router.get("/page4", (request, responses) => {
+  responses.send(html4);
 });
 
 module.exports = router;
