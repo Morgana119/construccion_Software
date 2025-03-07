@@ -2,7 +2,7 @@
   "name": "construccion_software",
   "version": "1.0.0",
   "description": "Laboratorios TC2005B feb-jun 2025",
-  "main": "./lab11/app.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,7 +24,10 @@
     "nodemon": "^3.1.9"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "ejs": "^3.1.10",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mysql2": "^3.13.0"
   }
 }

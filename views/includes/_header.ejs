@@ -30,7 +30,8 @@
                 <a href="/" class="navbar-item">
                 Home
                 </a>
-        
+                
+                <% if (isLoggedIn) { %>
                 <a href="/plantas/agregar" class="navbar-item">
                 Agregar planta
                 </a>
@@ -38,7 +39,7 @@
                 <a href="/plantas/regar" class="navbar-item">
                 Regar plantas
                 </a>
-        
+                <% } %>
                 <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                     More
@@ -65,12 +66,19 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                 <div class="buttons">
+                    <% if (isLoggedIn) { %>
+                    <%= username %> | 
+                    <a href="/users/logout" class="button is-danger">
+                        Logout
+                    </a>
+                    <% } else { %>
                     <a class="button is-primary">
                     <strong>Sign up</strong>
                     </a>
-                    <a class="button is-light">
+                    <a href="/users/login" class="button is-light">
                     Log in
                     </a>
+                    <% } %>
                 </div>
                 </div>
             </div>
